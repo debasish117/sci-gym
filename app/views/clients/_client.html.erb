@@ -1,0 +1,35 @@
+<div id="<%= dom_id client %>">
+  <tr>
+    <td class="member">
+      <div class="member-info">
+        <p><%= client.first_name %></p>
+        <p>UK Design Team</p>
+      </div>
+    </td>
+    <td>
+      <p><%= client.last_name %></p>
+      <p>Google</p>
+    </td>
+    <td>
+      <h6 class="text-danger"><%= client.age %></h6>
+    </td>
+    <td>
+      <p>$4,670</p>
+      <p>Paid</p>
+    </td>
+    <td class="status">
+      <span class="status-text status-red">Blocked</span>
+    </td>
+    <td>
+      <form class="form" action="#" method="POST">
+        <select class="action-box">
+          <option>Actions</option>
+          <option>Start project</option>
+          <option>Send for QA</option>
+          <option>Send invoice</option>
+        </select>
+      </form>
+    </td>
+  </tr>
+</div>
+

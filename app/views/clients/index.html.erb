@@ -1,0 +1,30 @@
+<main role="main" class="col-md-10">
+  <div class="projects mb-4">
+    <div class="projects-inner">
+      <header class="projects-header">
+        <div class="title">Clients</div>
+        <div class="count">| <%= @clients.size %> clients</div>
+        <i class="zmdi zmdi-download"></i>
+      </header>
+      <table class="projects-table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Budget</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <% @clients.each do |client| %>
+          <%= render client %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  
+  <%= link_to new_client_path do %>
+    <button type="button" class="btn btn-primary">Add Client</button>
+  <% end %>
+</main>

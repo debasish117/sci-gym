@@ -1,0 +1,76 @@
+
+
+<div class="card shadow rounded-3">
+  <div class="card-header p-3 h4">
+      New Client
+  </div>
+  <div class="card-body-1 p-4">
+    <%= form_with(model: client, class: "row") do |form| %>
+      <% if client.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+          <ul>
+            <% client.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group col-lg-4">
+        <label for="exampleInputEmail1" class="form-label">First Name</label>
+        <%= form.text_field :first_name, class: "form-control", id: "firstName" %>
+      </div>
+
+      <div class="form-group col-lg-4">
+        <label for="exampleInputPassword1" class="form-label">Last Name</label>
+        <%= form.text_field :last_name, class: "form-control", id: "lastName" %>
+      </div>
+
+      <div class="form-group col-lg-4">
+        <label class="form-label" for="form1Example1">Age</label>
+        <%= form.text_field :age, class: "form-control", id: "age" %>
+      </div>
+  
+      <%= form.fields_for :contact_info, include_id: false do |contact| %>
+
+        <div class="form-group col-lg-4">
+          <label class="form-label" for="form1Example1">Contact Number</label>
+          <%= contact.text_field :contact_number, class: "form-control", id: "contact_number" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label class="form-label" for="form1Example1">Address Field 1</label>
+          <%= contact.text_field :address_field_1, class: "form-control", id: "address_field_1" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label class="form-label" for="form1Example1">Address Field 2</label>
+          <%= contact.text_field :address_field_2, class: "form-control", id: "address_field_2" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label class="form-label" for="form1Example1">Zip Code</label>
+          <%= contact.text_field :zip_code, class: "form-control", id: "zip_code" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label class="form-label" for="form1Example1">Locality</label>
+          <%= contact.text_field :locality, class: "form-control", id: "locality" %>
+        </div>
+
+      <% end %>
+
+      <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight">
+          <%= form.submit class: "btn btn-primary float-end mt-2" %>
+        </div>
+
+        <div class="p-2 bd-highlight">
+          <%= form.submit "Back", class: "btn btn-primary float-end mt-2" %>
+        </div>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
