@@ -1,35 +1,44 @@
-<div id="<%= dom_id client %>">
-  <tr>
-    <td class="member">
-      <div class="member-info">
-        <p><%= client.first_name %></p>
-        <p>UK Design Team</p>
-      </div>
-    </td>
-    <td>
-      <p><%= client.last_name %></p>
-      <p>Google</p>
-    </td>
-    <td>
-      <h6 class="text-danger"><%= client.age %></h6>
-    </td>
-    <td>
-      <p>$4,670</p>
-      <p>Paid</p>
-    </td>
-    <td class="status">
-      <span class="status-text status-red">Blocked</span>
-    </td>
-    <td>
-      <form class="form" action="#" method="POST">
-        <select class="action-box">
-          <option>Actions</option>
-          <option>Start project</option>
-          <option>Send for QA</option>
-          <option>Send invoice</option>
-        </select>
-      </form>
-    </td>
-  </tr>
-</div>
+<tr id="<%= dom_id client %>">
+  <th scope="row" class="ps-4">
+    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck2" /><label class="form-check-label" for="contacusercheck2"></label></div>
+  </th>
+  <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body"><%= client.first_name %></a></td>
+  <td>
+  <% unless client.subscription_plans.empty? %>
+  <span class="badge badge-soft-info mb-0"><%= client.active_subscription.status %></span>
+  <% else %>
+  <span class="badge badge-soft-info mb-0">No Subscription</span>
+  <% end %>
+  </td>
+  <td>MarionWalker@minible.com</td>
+  <td><%= client&.active_subscription&.start_date %></td>
+  <td>03-12-2023</td>
+  <td>
+    <ul class="list-inline mb-0">
+      <li class="list-inline-item">
+        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+      </li>
+      <li class="list-inline-item">
+        <a href=<%= client_path(client)%> data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-show font-size-18"></i></a>
+      </li>
+      <li class="list-inline-item">
+        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+      </li>
+      <li class="list-inline-item dropdown">
+        <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-vertical-rounded"></i></a>
+        <div class="dropdown-menu dropdown-menu-end">
+            <% if client&.active_subscription&.inactive? %>
+              <a class="dropdown-item" href=<%= new_client_subscription_plan_path(client) %>>Add Subscription</a>
+            <% elsif client&.active_subscription&.active? %>
+              <a class="dropdown-item" href=<%= cancel_subscription_client_subscription_plan_path(client, client.active_subscription) %>>Cancel Subscription</a>
+            <% else %>
+              <a class="dropdown-item" href=<%= new_client_subscription_plan_path(client) %>>Add Subscription</a>
+            <% end %>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </td>
+</tr>
 

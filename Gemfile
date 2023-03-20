@@ -49,6 +49,9 @@ gem "byebug"
 
 gem "devise"
 gem "htmlbeautifier"
+gem 'bootstrap-datepicker-rails'
+gem "jquery-rails"
+gem 'jquery-ui-rails'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

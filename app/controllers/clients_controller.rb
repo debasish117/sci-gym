@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 
   # GET /clients or /clients.json
   def index
-    @clients = Client.all
+    @clients = Client.all.includes(:subscription_plans)
   end
 
   # GET /clients/1 or /clients/1.json
@@ -13,7 +13,7 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
-    @contact_info = @client.contact_infos.new
+    @contact_info = @client.build_contact_info
   end
 
   # GET /clients/1/edit
@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
   # POST /clients or /clients.json
   def create
     @client = Client.new(client_params)
-    @contact_infos = @client.contact_infos.new(client_params["contact_infos"])
+    @contact_infos = @client.build_contact_info(client_params["contact_info_attributes"])
     respond_to do |format|
       if @client.save && @contact_infos.save
         format.html { redirect_to client_url(@client), notice: "Client was successfully created." }

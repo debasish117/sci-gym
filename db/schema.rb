@@ -73,6 +73,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_134610) do
   create_table "subscription_plans", force: :cascade do |t|
     t.integer "client_id"
     t.integer "plan_id"
+    t.datetime "start_date"
+    t.integer "status", default: 0
+    t.jsonb "additional_details", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_subscription_plans_on_client_id"

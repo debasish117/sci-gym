@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins
   resources :clients do
-    collection do
-      get 'common'
+    resources :subscription_plans do
+      member do
+        put 'cancel_subscription'
+      end
     end
   end
 

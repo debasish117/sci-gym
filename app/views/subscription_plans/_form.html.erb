@@ -1,0 +1,42 @@
+
+
+<div class="card shadow rounded-3">
+  <div class="card-header p-3 h4">
+    Add Subscription
+  </div>
+  <div class="card-body-1 p-4">
+    <%= form_with url: client_subscription_plans_path, class: "row" do |form| %>
+
+      <div data-controller="hello" class="form-group col-lg-4">
+        <label for="inputPlan" class="form-label">Plan</label>
+        <%= form.select(:plan, Plan.all.collect {|p| [ p.name, p.id ] }, {}, {class: "form-select", "data-action": "change->hello#getPrice", "data": {"prices": @plan_prices}}) %>
+      </div>
+
+      <div class="form-group col-lg-4">
+        <label class="form-label" for="form1Example1">Price</label>
+        <%= form.text_field :price, class: "form-control", id: "price" %>
+      </div>
+
+      <div class="form-group col-lg-4">
+        <label for="inputStartDate" class="form-label">Start Date</label>
+        <div class="input-group date">
+          <%= form.text_field :start_date, {class: "form-control", "data-provide": "datepicker"} %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight">
+          <%= form.submit class: "btn btn-primary float-end mt-2" %>
+        </div>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
+
+<!-- Script -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#start_date').datepicker({todayHighlight: true, minDate: 0, format: "dd/mm/yyyy"}); 
+});
+</script>
